@@ -1,9 +1,9 @@
-import { SecurityFormFC } from "@/components/SecurityFormFC";
+import { SecurityFormCC } from "@/components/SecurityFormCC";
 
 function UseStatePage() {
   return (
     <div>
-      <SecurityFormFC />
+      <SecurityFormCC />
     </div>
   );
 }

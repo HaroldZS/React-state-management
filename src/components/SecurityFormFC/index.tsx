@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { useRef } from "react";
 import { FaRegStar } from "react-icons/fa";
@@ -5,7 +6,7 @@ import { GoEye } from "react-icons/go";
 import { GoRepoLocked } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
 
-function SecurityForm() {
+function SecurityFormFC() {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const openModal = () => {
@@ -54,7 +55,7 @@ function SecurityForm() {
             <form method="dialog" style={{ width: "100%" }}>
               <input
                 type="text"
-                placeholder="Type here"
+                placeholder="AnyRepositoryToDelete"
                 className="input input-bordered input-error mb-3 w-full h-8 hover:border-secondary focus:border-none"
               />
               <button className="btn w-full min-h-0 h-8" onClick={closeModal}>
@@ -68,4 +69,4 @@ function SecurityForm() {
   );
 }
 
-export { SecurityForm };
+export { SecurityFormFC };
