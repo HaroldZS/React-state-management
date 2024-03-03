@@ -2,7 +2,7 @@ import { SecurityFormCC } from "@/components/SecurityFormCC";
 
 function UseStatePage() {
   return (
-    <div>
+    <div className="w-screen h-screen flex justify-center items-center">
       <SecurityFormCC />
     </div>
   );
