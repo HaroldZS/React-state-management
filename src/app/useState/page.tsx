@@ -3,7 +3,7 @@ import { SecurityFormFC } from "@/components/SecurityFormFC";
 function UseStatePage() {
   return (
     <div>
-      <SecurityFormFC />
+      <SecurityFormFC repository="AnyRepositoryToDelete" />
     </div>
   );
 }
