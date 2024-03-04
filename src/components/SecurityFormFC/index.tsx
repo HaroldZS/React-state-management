@@ -109,10 +109,10 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <div className="text-sm flex justify-between items-center">
+            <div className="flex items-center justify-between text-sm">
               <p>Delete {repository}</p>
               <IoClose
-                className="text-xl cursor-pointer"
+                className="cursor-pointer text-xl"
                 onClick={() => {
                   onClose();
                   closeModal();
@@ -123,9 +123,9 @@ function SecurityFormFC({ repository }: { repository: string }) {
             <div className="mx-auto pt-2">
               <GoRepoLocked className="text-2xl" />
             </div>
-            <h3 className="font-bold text-lg text-center pt-4">{repository}</h3>
+            <h3 className="pt-4 text-center text-lg font-bold">{repository}</h3>
             <div className="flex justify-center gap-2 text-sm">
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 ">
                 <FaRegStar />
                 <p>5 stars</p>
               </span>
@@ -136,10 +136,10 @@ function SecurityFormFC({ repository }: { repository: string }) {
             </div>
             <div className="divider"></div>
             {state.error && !state.loading && (
-              <p className="text-center pb-4">Error: Incorrect code</p>
+              <p className="pb-4 text-center">Error: Incorrect code</p>
             )}
-            {state.loading && <p className="text-center pb-4">Loading...</p>}
-            <p className="text-sm mb-1">
+            {state.loading && <p className="pb-4 text-center">Loading...</p>}
+            <p className="mb-1 text-sm">
               To confirm, type "{repository}" in the box below
             </p>
             <div className="modal-action mt-0">
@@ -147,14 +147,14 @@ function SecurityFormFC({ repository }: { repository: string }) {
                 <input
                   type="text"
                   placeholder={repository}
-                  className="input input-bordered input-error mb-3 w-full h-8 hover:border-secondary focus:border-none"
+                  className="input input-bordered input-error mb-3 h-8 w-full hover:border-secondary focus:border-none"
                   value={state.value}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     onWrite(e.target.value)
                   }
                 />
                 <button
-                  className="btn w-full min-h-0 h-8"
+                  className="btn h-8 min-h-0 w-full"
                   onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                     e.preventDefault();
                     onCheck();
@@ -182,7 +182,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
             <div className="divider"></div>
             <div className="flex justify-center gap-10">
               <button
-                className="btn btn-warning min-h-0 h-8"
+                className="btn btn-warning h-8 min-h-0"
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
                   onDelete();
@@ -191,7 +191,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
                 Yes, I'm sure
               </button>
               <button
-                className="btn btn-error min-h-0 h-8"
+                className="btn btn-error h-8 min-h-0"
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
                   onReset();
@@ -212,9 +212,9 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <p className="text-center mb-5">Successfully deleted!</p>
+            <p className="mb-5 text-center">Successfully deleted!</p>
             <button
-              className="btn min-h-0 h-8"
+              className="btn h-8 min-h-0"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.preventDefault();
                 onReset();
