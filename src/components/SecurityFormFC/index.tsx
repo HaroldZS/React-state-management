@@ -30,20 +30,20 @@ function SecurityFormFC({ repository }: { repository: string }) {
   }, [state.loading]);
 
   // Modal
-  const openModal = () => {
+  const openModal = (): void => {
     if (modalRef.current) {
       modalRef.current.showModal();
     }
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     if (modalRef.current) {
       modalRef.current.close();
     }
   };
 
   // States
-  function onCheck() {
+  function onCheck(): void {
     console.log(state.value);
     setState({
       ...state,
@@ -51,7 +51,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
     });
   }
 
-  function onError() {
+  function onError(): void {
     setState({
       ...state,
       error: true,
@@ -59,14 +59,14 @@ function SecurityFormFC({ repository }: { repository: string }) {
     });
   }
 
-  function onWrite(newValue: string) {
+  function onWrite(newValue: string): void {
     setState({
       ...state,
       value: newValue,
     });
   }
 
-  function onConfirm() {
+  function onConfirm(): void {
     setState({
       ...state,
       error: false,
@@ -75,14 +75,14 @@ function SecurityFormFC({ repository }: { repository: string }) {
     });
   }
 
-  function onDelete() {
+  function onDelete(): void {
     setState({
       ...state,
       deleted: true,
     });
   }
 
-  function onReset() {
+  function onReset(): void {
     setState({
       ...state,
       confirmed: false,
@@ -100,7 +100,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
             <div className="border-b-[1px] pb-4 text-sm flex justify-between items-center">
-              <p>Delete HaroldZS/{repository}</p>
+              <p>Delete {repository}</p>
               <IoClose
                 className="text-xl cursor-pointer"
                 onClick={closeModal}
@@ -109,9 +109,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
             <div className="mx-auto pt-2">
               <GoRepoLocked className="text-2xl" />
             </div>
-            <h3 className="font-bold text-lg text-center pt-4">
-              HaroldZS/{repository}
-            </h3>
+            <h3 className="font-bold text-lg text-center pt-4">{repository}</h3>
             <div className="flex justify-center gap-2 border-b-[1px] py-4 text-sm">
               <span className="flex items-center gap-2">
                 <FaRegStar />
@@ -127,7 +125,7 @@ function SecurityFormFC({ repository }: { repository: string }) {
             )}
             {state.loading && <p className="text-center mt-3">Loading...</p>}
             <p className="text-sm mb-1 pt-4">
-              To confirm, type "HaroldZS/{repository}" in the box below
+              To confirm, type "{repository}" in the box below
             </p>
             <div className="modal-action mt-0">
               <form method="dialog" style={{ width: "100%" }}>
@@ -163,7 +161,29 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <p>Confirmed</p>
+            <p className="text-center mb-5">
+              Confirm that you want to delete "HaroldZS/{repository}"
+            </p>
+            <div className="flex justify-center gap-10">
+              <button
+                className="btn btn-warning min-h-0 h-8"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.preventDefault();
+                  onDelete();
+                }}
+              >
+                Yes, I'm sure
+              </button>
+              <button
+                className="btn btn-error min-h-0 h-8"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.preventDefault();
+                  onReset();
+                }}
+              >
+                No, go back
+              </button>
+            </div>
           </div>
         </dialog>
       </>
