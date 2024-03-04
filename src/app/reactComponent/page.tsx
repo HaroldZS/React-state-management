@@ -1,11 +1,11 @@
 import { SecurityFormCC } from "@/components/SecurityFormCC";
 
-function UseStatePage() {
+function ReactComponentPage() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <SecurityFormCC />
+    <div className="flex h-screen w-screen items-center justify-center">
+      <SecurityFormCC repository="HaroldZS/AnyRepositoryToDelete" />
     </div>
   );
 }
 
-export default UseStatePage;
+export default ReactComponentPage;
