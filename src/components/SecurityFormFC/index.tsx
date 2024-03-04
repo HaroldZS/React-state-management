@@ -91,6 +91,16 @@ function SecurityFormFC({ repository }: { repository: string }) {
     });
   }
 
+  function onClose(): void {
+    setState({
+      loading: false,
+      error: false,
+      confirmed: false,
+      deleted: false,
+      value: "",
+    });
+  }
+
   if (!state.confirmed && !state.deleted) {
     return (
       <>
@@ -99,18 +109,22 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <div className="border-b-[1px] pb-4 text-sm flex justify-between items-center">
+            <div className="text-sm flex justify-between items-center">
               <p>Delete {repository}</p>
               <IoClose
                 className="text-xl cursor-pointer"
-                onClick={closeModal}
+                onClick={() => {
+                  onClose();
+                  closeModal();
+                }}
               />
             </div>
+            <div className="divider"></div>
             <div className="mx-auto pt-2">
               <GoRepoLocked className="text-2xl" />
             </div>
             <h3 className="font-bold text-lg text-center pt-4">{repository}</h3>
-            <div className="flex justify-center gap-2 border-b-[1px] py-4 text-sm">
+            <div className="flex justify-center gap-2 text-sm">
               <span className="flex items-center gap-2">
                 <FaRegStar />
                 <p>5 stars</p>
@@ -120,11 +134,12 @@ function SecurityFormFC({ repository }: { repository: string }) {
                 <p>1 watchers</p>
               </span>
             </div>
+            <div className="divider"></div>
             {state.error && !state.loading && (
-              <p className="text-center mt-3">Error: Incorrect code</p>
+              <p className="text-center pb-4">Error: Incorrect code</p>
             )}
-            {state.loading && <p className="text-center mt-3">Loading...</p>}
-            <p className="text-sm mb-1 pt-4">
+            {state.loading && <p className="text-center pb-4">Loading...</p>}
+            <p className="text-sm mb-1">
               To confirm, type "{repository}" in the box below
             </p>
             <div className="modal-action mt-0">
@@ -161,9 +176,10 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <p className="text-center mb-5">
+            <p className="text-center">
               Confirm that you want to delete "HaroldZS/{repository}"
             </p>
+            <div className="divider"></div>
             <div className="flex justify-center gap-10">
               <button
                 className="btn btn-warning min-h-0 h-8"
@@ -196,7 +212,16 @@ function SecurityFormFC({ repository }: { repository: string }) {
         </button>
         <dialog id="my_modal_1" className="modal" ref={modalRef}>
           <div className="modal-box flex flex-col">
-            <p>Deleted</p>
+            <p className="text-center mb-5">Successfully deleted!</p>
+            <button
+              className="btn min-h-0 h-8"
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                onReset();
+              }}
+            >
+              Reset, go back
+            </button>
           </div>
         </dialog>
       </>
