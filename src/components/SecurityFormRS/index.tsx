@@ -1,35 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FaRegStar } from "react-icons/fa";
 import { GoEye } from "react-icons/go";
 import { GoRepoLocked } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
-import { SecurityAppState } from "@/interfaces/SecurityAppState";
+import { useSecurityActions } from "@/hooks/useSecurityActions";
 import { reducerSwitch } from "@/reducers/reducerSwitch";
-import { actionTypes } from "@/actions/actionTypes";
-
-const initialState: SecurityAppState = {
-  loading: false,
-  error: false,
-  confirmed: false,
-  deleted: false,
-  value: "",
-};
 
 function SecurityFormRS({ repository }: { repository: string }) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const [state, dispatch] = useReducer(reducerSwitch, initialState);
-
-  // Action creators
-  const onCheck = () => dispatch({ type: actionTypes.check });
-  const onConfirm = () => dispatch({ type: actionTypes.confirm });
-  const onDelete = () => dispatch({ type: actionTypes.delete });
-  const onError = () => dispatch({ type: actionTypes.error });
-  const onReset = () => dispatch({ type: actionTypes.reset });
-  const onClose = () => dispatch({ type: actionTypes.close });
-  const onWrite = ({ target: { value } }: any) =>
-    dispatch({ type: actionTypes.write, payload: value });
+  const {
+    state,
+    onCheck,
+    onConfirm,
+    onDelete,
+    onError,
+    onReset,
+    onClose,
+    onWrite,
+  } = useSecurityActions(reducerSwitch);
 
   useEffect(() => {
     if (state.loading) {
